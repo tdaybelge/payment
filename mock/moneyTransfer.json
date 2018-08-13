@@ -1,0 +1,27 @@
+{
+   "id": 123,
+   "reference": "ABC123",
+   "debtor": {
+      "party_no": 1,
+      "name": "Tom"
+   },
+   "creditor": {
+      "party_no": 2,
+      "name": "Jerry"
+   },
+   "tax": 18.0,
+   "amount": 100.0,
+   "commission": 5.0,
+   "decleration": {
+      "debit_ep": {
+         "acc_no": 123,
+         "branch_code": 4299,
+         "currency_code": "TRY"
+      },
+      "credit_ep": {
+         "acc_no": 234,
+         "branch_code": 4299,
+         "currency_code": "TRY"
+      }
+   }
+}
