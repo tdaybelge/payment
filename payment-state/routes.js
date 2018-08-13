@@ -1,11 +1,12 @@
 module.exports = function(app) {
   var paymentsController = require('./controller');
 
-  // todoList Routes
   app.route('/payments')
-    .put(paymentsController.executePayment);
-
+    .post(paymentsController.insertPaymentState);
 
   app.route('/payments/:paymentId')
-    .get(paymentsController.getPaymentDetails);
+      .put(paymentsController.updatePaymentState);
+
+  app.route('/payments/:paymentId')
+    .get(paymentsController.getPaymentState);
 };
