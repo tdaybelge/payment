@@ -1,0 +1,75 @@
+###############################################################
+#create k8s dashboard
+kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+
+#NAT k8s dashboard virtual box port to 192.168.231.128 (IP of ens33 ethernet in ubuntu guest VM, while VMnet8 on Windows host is 192.168.231.1)
+vboxmanage controlvm "minikube" natpf1 "http-30000,tcp,192.168.231.128,30000,,30000"
+
+#delete NAT rule
+vboxmanage controlvm "minikube" natpf1 delete http-30000
+
+#NAT a range of ports
+for port in {30000..30100}; do vboxmanage controlvm minikube natpf1 "http-$port,tcp,,$port,,$port"; done
+
+#delete NAT rules for a range of ports
+for port in {30000..30100}; do vboxmanage controlvm "minikube" natpf1 delete http-$port; done
+
+
+
+##turhan@ubuntu:~$ ifconfig
+##ens33     Link encap:Ethernet  HWaddr 00:0c:29:20:3e:4c
+##          inet addr:192.168.231.128  Bcast:192.168.231.255  Mask:255.255.255.0
+##          inet6 addr: fe80::20c:29ff:fe20:3e4c/64 Scope:Link
+##          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+##          RX packets:789 errors:0 dropped:0 overruns:0 frame:0
+##          TX packets:643 errors:0 dropped:0 overruns:0 carrier:0
+##          collisions:0 txqueuelen:1000
+##          RX bytes:100265 (100.2 KB)  TX bytes:313093 (313.0 KB)
+
+###############################################################
+#create a local docker registry
+kubectl create -f https://gist.githubusercontent.com/coco98/b750b3debc6d517308596c248daf3bb1/raw/6efc11eb8c2dce167ba0a5e557833cc4ff38fa7c/kube-registry.yaml
+
+
+###############################################################
+#create the system context
+kubectl config set-context system --namespace=kube-system --cluster=minikube --user=minikube
+
+#switch to system context
+kubectl config use-context system
+
+#list all namespaces
+kubectl get namespaces
+
+#switch to minikube docker environment
+eval $(minikube docker-env)
+
+#to revert back to original docker
+eval $(minikube docker-env -u)
+
+###############################################################
+#to increase the size of VM Ware image:
+#mount the gparted iso
+#delete the extended and linux swap partitions following the boot partition
+#increase the size of the boot partition
+#recreate the extended and linux swap partitions
+#boot into the VM and correct the UUID of the linux swap partition in /etc/fstab
+sudo blkid	#get the UUID of swap partition
+sudo nano /etc/fstab # correct the UUID of swap partition
+
+#to mount VM Ware folder if auto mount doesn't work
+sudo vmhgfs-fuse /mnt/hgfs -o allow_other -o nonempty
+
+###############################################################
+
+#export path of Node.js global modules
+export NODE_PATH=/usr/local/lib/node_modules
+
+###############################################################
+
+docker build -t payment-state:v1 .
+kubectl run payment-state --image=payment-state:v1 --port=8080 --image-pull-policy=Never
+kubectl expose deployment payment-state --type=LoadBalancer
+kubectl delete deployment/payment-state
+docker rmi payment-state:v1
+kubectl delete services/payment-state
