@@ -12,5 +12,5 @@ COPY . .
 
 ENTRYPOINT [ "python" ]
 
-EXPOSE 80
+EXPOSE 3002
 CMD [ "pay_validation.py" ]

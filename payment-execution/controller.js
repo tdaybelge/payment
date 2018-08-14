@@ -21,42 +21,42 @@ exports.executePayment = function(req, res) {
 function insertPaymentState(payment) {
   return new Promise(function(resolve, reject) {
     console.log('payment state insert: ', JSON.stringify(payment));
-    request.post({url:'http://192.168.231.128:30112/payments', json: payment}, callback(resolve, reject));
+    request.post({url:'http://payment-state:8080/payments', json: payment}, callback(resolve, reject));
   });
 }
 
 function enrichPayment(payment) {
   return new Promise(function(resolve, reject) {
     console.log('payment enriched: ', JSON.stringify(payment));
-    request.put({url:'http://192.168.231.128:31777/payments/payment', json: payment}, callback(resolve, reject));
+    request.put({url:'http://payment-enrichment:3000/payments/payment', json: payment}, callback(resolve, reject));
   });
 }
 
 function validatePayment(payment) {
   return new Promise(function(resolve, reject) {
     console.log('payment validated: ', JSON.stringify(payment));
-    request.post({url:'http://192.168.231.128:31680/payments/payment', json: payment}, callback(resolve, reject, payment));
+    request.post({url:'http://payment-validation:3002/payments/payment', json: payment}, callback(resolve, reject, payment));
   });
 }
 
 function updatePaymentState(payment) {
   return new Promise(function(resolve, reject) {
     console.log('payment state update: ', JSON.stringify(payment));
-    request.put({url:'http://192.168.231.128:30112/payments/' + payment.id, json: payment}, callback(resolve, reject, payment));
+    request.put({url:'http://payment-state:8080/payments/' + payment.id, json: payment}, callback(resolve, reject, payment));
   });
 }
 
 function moneyTransfer(payment) {
   return new Promise(function(resolve, reject) {
     console.log('money transfer: ', JSON.stringify(payment));
-    request.put({url:'http://192.168.231.128:31982/transfers', json: payment}, callback(resolve, reject));
+    request.put({url:'http://money-transfer:8081/transfers', json: payment}, callback(resolve, reject));
   });
 }
 
 function sendNotification(payment) {
   return new Promise(function(resolve, reject) {
     console.log('send notification: ', JSON.stringify(payment));
-    request.post({url:'http://192.168.231.128:32275/payments/payment', json: payment}, callback(resolve, reject, payment));
+    request.post({url:'http://payment-notification:3001/payments/payment', json: payment}, callback(resolve, reject, payment));
   });
 }
 
@@ -66,10 +66,10 @@ function callback(resolve, reject, reqBody) {
       console.error("error");
       reject(error);
     } else if(200 <= httpResponse.statusCode && httpResponse.statusCode< 300) {
-      if(resBody) {
-          resolve(resBody);
-      } else {
+      if(reqBody) {
           resolve(reqBody);
+      } else {
+          resolve(resBody);
       }
     } else {
       console.error("http error");
