@@ -12,7 +12,7 @@
    "tax": 18.0,
    "amount": 100.0,
    "commission": 5.0,
-   "decleration": {
+   "declaration": {
       "debit_ep": {
          "acc_no": 123,
          "branch_code": 4299,
