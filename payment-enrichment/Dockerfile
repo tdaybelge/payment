@@ -1,12 +1,9 @@
-FROM python:2.7.14
+FROM python:2.7-alpine
 
-RUN apt-get update
-RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
-RUN python get-pip.py
+COPY requirements.txt /
+RUN pip install -r /requirements.txt
 
 WORKDIR /usr/src/app
-
-RUN pip install flask
 
 COPY . .
 
