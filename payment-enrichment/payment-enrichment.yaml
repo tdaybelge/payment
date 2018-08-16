@@ -1,0 +1,41 @@
+---
+kind: Deployment
+apiVersion: apps/v1beta1
+metadata:
+  name: payment-enrichment
+  labels:
+    run: payment-enrichment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: payment-enrichment
+  template:
+    metadata:
+      creationTimestamp:
+      labels:
+        run: payment-enrichment
+    spec:
+      containers:
+      - name: payment-enrichment
+        image: payment-enrichment:v1
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        imagePullPolicy: Never
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: payment-enrichment
+  labels:
+    run: payment-enrichment
+spec:
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+    nodePort: 31777
+  selector:
+    run: payment-enrichment
+  type: LoadBalancer
