@@ -10,7 +10,9 @@ app.use(bodyParser.json());
 
 
 var routes = require('./routes'); //importing route
+var healthCheck = require('./healthCheck/healthCheckRoutes'); //importing route
 routes(app); //register the route
+healthCheck(app);
 
 
 app.listen(port);

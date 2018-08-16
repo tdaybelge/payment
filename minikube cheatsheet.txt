@@ -72,4 +72,4 @@ kubectl run payment-state --image=payment-state:v1 --port=8080 --image-pull-poli
 kubectl expose deployment payment-state --type=LoadBalancer
 kubectl delete deployment/payment-state
 docker rmi payment-state:v1
-kubectl delete services/payment-state
+kubectl delete service/payment-state

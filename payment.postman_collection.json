@@ -6,257 +6,395 @@
 	},
 	"item": [
 		{
-			"name": "updatePaymentDetails",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+			"name": "business",
+			"item": [
+				{
+					"name": "updatePaymentDetails",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+						},
+						"url": {
+							"raw": "http://192.168.231.128:30112/payments/123",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"231",
+								"128"
+							],
+							"port": "30112",
+							"path": [
+								"payments",
+								"123"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://192.168.231.128:30112/payments/123",
-					"protocol": "http",
-					"host": [
-						"192",
-						"168",
-						"231",
-						"128"
-					],
-					"port": "30112",
-					"path": [
-						"payments",
-						"123"
-					]
+				{
+					"name": "insertPaymentDetails",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+						},
+						"url": {
+							"raw": "http://192.168.231.128:30172/payments",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"231",
+								"128"
+							],
+							"port": "30172",
+							"path": [
+								"payments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "executePayment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+						},
+						"url": {
+							"raw": "http://192.168.231.128:31472/payments",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"231",
+								"128"
+							],
+							"port": "31472",
+							"path": [
+								"payments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validatePayment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+						},
+						"url": {
+							"raw": "http://192.168.231.128:30773/payments/payment",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"231",
+								"128"
+							],
+							"port": "30773",
+							"path": [
+								"payments",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sendNotification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+						},
+						"url": {
+							"raw": "http://192.168.231.128:32275/payments/payment",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"231",
+								"128"
+							],
+							"port": "32275",
+							"path": [
+								"payments",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "enrichPayment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+						},
+						"url": {
+							"raw": "http://192.168.231.128:31777/payments/payment",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"231",
+								"128"
+							],
+							"port": "31777",
+							"path": [
+								"payments",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transferMoney",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"id\": 123,\t\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+						},
+						"url": {
+							"raw": "http://192.168.231.128:31982/transfers",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"231",
+								"128"
+							],
+							"port": "31982",
+							"path": [
+								"transfers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPaymentDetails",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"decleration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+						},
+						"url": {
+							"raw": "http://192.168.231.128:30172/payments/123",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"231",
+								"128"
+							],
+							"port": "30172",
+							"path": [
+								"payments",
+								"123"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "insertPaymentDetails",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+			"name": "health",
+			"item": [
+				{
+					"name": "setAlive",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"state\": false\n}"
+						},
+						"url": {
+							"raw": "http://192.168.231.128:30172/health/live",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"231",
+								"128"
+							],
+							"port": "30172",
+							"path": [
+								"health",
+								"live"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://192.168.231.128:30172/payments",
-					"protocol": "http",
-					"host": [
-						"192",
-						"168",
-						"231",
-						"128"
-					],
-					"port": "30172",
-					"path": [
-						"payments"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "executePayment",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+				{
+					"name": "setReady",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"state\": false\n}"
+						},
+						"url": {
+							"raw": "http://192.168.231.128:30172/health/ready",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"231",
+								"128"
+							],
+							"port": "30172",
+							"path": [
+								"health",
+								"ready"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://192.168.231.128:31472/payments",
-					"protocol": "http",
-					"host": [
-						"192",
-						"168",
-						"231",
-						"128"
-					],
-					"port": "31472",
-					"path": [
-						"payments"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "validatePayment",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+				{
+					"name": "isAlive",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"decleration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+						},
+						"url": {
+							"raw": "http://192.168.231.128:30172/health/live",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"231",
+								"128"
+							],
+							"port": "30172",
+							"path": [
+								"health",
+								"live"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://192.168.231.128:30773/payments/payment",
-					"protocol": "http",
-					"host": [
-						"192",
-						"168",
-						"231",
-						"128"
-					],
-					"port": "30773",
-					"path": [
-						"payments",
-						"payment"
-					]
+				{
+					"name": "isReady",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"decleration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+						},
+						"url": {
+							"raw": "http://192.168.231.128:30172/health/ready",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"231",
+								"128"
+							],
+							"port": "30172",
+							"path": [
+								"health",
+								"ready"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "sendNotification",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
-				},
-				"url": {
-					"raw": "http://192.168.231.128:32275/payments/payment",
-					"protocol": "http",
-					"host": [
-						"192",
-						"168",
-						"231",
-						"128"
-					],
-					"port": "32275",
-					"path": [
-						"payments",
-						"payment"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "enrichPayment",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
-				},
-				"url": {
-					"raw": "http://192.168.231.128:31777/payments/payment",
-					"protocol": "http",
-					"host": [
-						"192",
-						"168",
-						"231",
-						"128"
-					],
-					"port": "31777",
-					"path": [
-						"payments",
-						"payment"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "transferMoney",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n   \"id\": 123,\t\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
-				},
-				"url": {
-					"raw": "http://192.168.231.128:31982/transfers",
-					"protocol": "http",
-					"host": [
-						"192",
-						"168",
-						"231",
-						"128"
-					],
-					"port": "31982",
-					"path": [
-						"transfers"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getPaymentDetails",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"decleration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
-				},
-				"url": {
-					"raw": "http://192.168.231.128:30172/payments/123",
-					"protocol": "http",
-					"host": [
-						"192",
-						"168",
-						"231",
-						"128"
-					],
-					"port": "30172",
-					"path": [
-						"payments",
-						"123"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }

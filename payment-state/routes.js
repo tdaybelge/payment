@@ -5,7 +5,7 @@ module.exports = function(app) {
     .post(paymentsController.insertPaymentState);
 
   app.route('/payments/:paymentId')
-      .put(paymentsController.updatePaymentState);
+    .put(paymentsController.updatePaymentState);
 
   app.route('/payments/:paymentId')
     .get(paymentsController.getPaymentState);
