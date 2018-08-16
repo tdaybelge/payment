@@ -1,0 +1,41 @@
+---
+kind: Deployment
+apiVersion: apps/v1beta1
+metadata:
+  name: payment-notification
+  labels:
+    run: payment-notification
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: payment-notification
+  template:
+    metadata:
+      creationTimestamp:
+      labels:
+        run: payment-notification
+    spec:
+      containers:
+      - name: payment-notification
+        image: payment-notification:v1
+        ports:
+        - containerPort: 3001
+          protocol: TCP
+        imagePullPolicy: Never
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: payment-notification
+  labels:
+    run: payment-notification
+spec:
+  ports:
+  - protocol: TCP
+    port: 3001
+    targetPort: 3001
+    nodePort: 32275
+  selector:
+    run: payment-notification
+  type: LoadBalancer
