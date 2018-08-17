@@ -73,3 +73,7 @@ kubectl expose deployment payment-state --type=LoadBalancer
 kubectl delete deployment/payment-state
 docker rmi payment-state:v1
 kubectl delete service/payment-state
+
+###############################################################
+#install mongodb with helm
+helm install --name my-mongodb --set persistence.size=300Mi stable/mongodb
