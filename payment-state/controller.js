@@ -40,6 +40,18 @@ exports.updatePaymentState = function(req, res) {
 };
 
 exports.getPaymentState = function(req, res) {
-  var payment = JSON.parse(fs.readFileSync('mock/paymentState.json', 'utf8'));
-  res.status(200).json(payment);
+  var id = parseInt(req.params.paymentId);
+  console.log("id: " + id);
+  var resultPayment;
+  MongoClient.connect(_url_, options, function(err, db) {
+    if (err) throw err;
+    db.collection("payments").findOne({"id":id}).then(function(payment){
+      console.log(JSON.stringify(payment));
+      if(!payment){
+        res.status(404);
+      }else{
+        res.status(200).json(payment);
+      }
+    });
+  });
 };
