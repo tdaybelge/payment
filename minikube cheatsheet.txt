@@ -75,5 +75,30 @@ docker rmi payment-state:v1
 kubectl delete service/payment-state
 
 ###############################################################
+
+#initilize tiller of helm
+helm init
+
+###############################################################
 #install mongodb with helm
-helm install --name my-mongodb --set persistence.size=300Mi stable/mongodb
+helm install --name payment-mongodb --set persistence.size=300Mi stable/mongodb
+
+#uninstall
+helm delete payment-mongodb
+
+MongoDB can be accessed via port 27017 on the following DNS name from within your cluster:
+
+    payment-mongodb.default.svc.cluster.local
+
+To get the root password run:
+
+    export MONGODB_ROOT_PASSWORD=$(kubectl get secret --namespace default payment-mongodb -o jsonpath="{.data.mongodb-root-password}" | base64 --decode)
+
+To connect to your database run the following command:
+
+    kubectl run payment-mongodb-client --rm --tty -i --image bitnami/mongodb --command -- mongo admin --host payment-mongodb -u root -p $MONGODB_ROOT_PASSWORD
+
+To connect to your database from outside the cluster execute the following commands:
+
+    kubectl port-forward --namespace default svc/payment-mongodb 27017:27017 &
+    mongo --host 127.0.0.1 -p $MONGODB_ROOT_PASSWORD

@@ -1,5 +1,5 @@
-module.exports = function(app) {
-  var paymentsController = require('./controller');
+module.exports = function(app, database) {
+  var paymentsController = require('./controller')(database);
 
   app.route('/payments')
     .post(paymentsController.insertPaymentState);
