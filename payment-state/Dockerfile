@@ -12,6 +12,9 @@ RUN npm install
 # If you are building your code for production
 # RUN npm install --only=production
 
+# install mongodb 2.2.33
+RUN npm install mongodb@2.2.33
+
 # Bundle app source
 COPY . .
 COPY mock /usr/src/
