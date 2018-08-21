@@ -13,13 +13,26 @@ app.use(bodyParser.json());
 var routes = require('./routes'); //importing route
 var healthCheck = require('./healthCheck/healthCheckRoutes'); //importing route
 
-MongoClient.connect("mongodb://payment-mongodb:27017/payments", null, function(err, mongoclient) {
-  if(err)
-    throw err;
 
-  var database = mongoclient.db("payments");
-  console.log(database);
-  routes(app, database); //register the route
+var options = {
+  useMongoClinet: true,
+  uri_decode_auth: true,
+  auth: {authdb: 'admin'},
+  user: 'root',
+  password: '4SqquWwIRl',
+}
+var url = "mongodb://payment-mongodb:27017/payment-mongodb";
+
+MongoClient.connect(url, options, function(err, db) {
+  if(err) throw err;
+
+  // if not exists, create 'payments' collection in database
+  db.createCollection("payments", function(err, result) {
+    if (err) throw err;
+    console.log("Payments collection is created!");
+  });
+
+  routes(app, db); //register the route
   healthCheck(app);
   app.listen(port);
 });
