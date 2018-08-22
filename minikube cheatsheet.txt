@@ -81,10 +81,11 @@ helm init
 
 ###############################################################
 #install mongodb with helm
-helm install --name payment-mongodb --set persistence.size=300Mi stable/mongodb
+helm install --name payment-mongodb --set persistence.size=150Mi stable/mongodb
 
 #uninstall
 helm delete payment-mongodb
+helm del --purge payment-mongodb
 
 MongoDB can be accessed via port 27017 on the following DNS name from within your cluster:
 

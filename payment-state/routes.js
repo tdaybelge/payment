@@ -1,12 +1,11 @@
-module.exports = function(app, db) {
-  var paymentsController = require('./controller').init(db);
+module.exports = function(app, controller) {
 
   app.route('/payments')
-    .post(paymentsController.insertPaymentState);
+    .post(controller.insertPaymentState);
 
   app.route('/payments/:paymentId')
-    .put(paymentsController.updatePaymentState);
+    .put(controller.updatePaymentState);
 
   app.route('/payments/:paymentId')
-    .get(paymentsController.getPaymentState);
+    .get(controller.getPaymentState);
 };

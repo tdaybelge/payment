@@ -19,20 +19,14 @@ var options = {
   uri_decode_auth: true,
   auth: {authdb: 'admin'},
   user: 'root',
-  password: '4SqquWwIRl',
+  password: 'kGywRdh4VL',
 }
 var url = "mongodb://payment-mongodb:27017/payment-mongodb";
 
 MongoClient.connect(url, options, function(err, db) {
   if(err) throw err;
-
-  // if not exists, create 'payments' collection in database
-  db.createCollection("payments", function(err, result) {
-    if (err) throw err;
-    console.log("Payments collection is created!");
-  });
-
-  routes(app, db); //register the route
+  var controller = require('./controller').init(db);
+  routes(app, controller); //register the route
   healthCheck(app);
   app.listen(port);
 });

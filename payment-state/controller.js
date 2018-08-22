@@ -1,8 +1,14 @@
 var fs = require('fs');
+var ObjectID = require('mongodb').ObjectID;
 
 var db;
 exports.init = function(database) {
   db = database;
+  // if not exists, create 'payments' collection in database
+  db.createCollection("payments", function(err, result) {
+    if (err) throw err;
+    console.log("Payments collection is created!");
+  });
   return this;
 };
 
@@ -17,21 +23,38 @@ exports.insertPaymentState = function(req, res) {
   // print out payment info
   console.log("payment: " + JSON.stringify(payment));
   // insert payment into payments collection
-  db.collection("payments").insertOne(payment, function(err, mongoResponse) {
+  db.collection("payments").insertOne(payment, function(err, result) {
     if (err) {
       res.status(500).json(err);
     } else {
-      console.log("Payment document is inserted into Payments collection.");
+      console.log("Payment document is inserted into payments collection.");
       res.status(201).json(setId(payment));
     }
   });
 };
 
 exports.updatePaymentState = function(req, res) {
-  res.status(204).end();
+  db.collection("payments").updateOne({'_id': ObjectID(req.params.paymentId)}, req.body, null, function(err, result) {
+    if (err) {
+      res.status(500).json(err);
+    } else if(result.result.nModified === 1) {
+      console.log("Payment document is updated in payments collection.");
+      res.status(204).end();
+    } else {
+      res.status(404).json({'message': 'No payment record found for id: ' + req.params.paymentId + '.'});
+    }
+  });
 };
 
 exports.getPaymentState = function(req, res) {
-  var payment = JSON.parse(fs.readFileSync('mock/paymentState.json', 'utf8'));
-  res.status(200).json(payment);
+  db.collection("payments").findOne({'_id': ObjectID(req.params.paymentId)}, function(err, payment) {
+    if (err) {
+      res.status(500).json(err);
+    } else if(payment) {
+      console.log("Payment document is found from payments collection.");
+      res.status(200).json(setId(payment));
+    } else {
+      res.status(404).json({'message': 'No payment record found for id: ' + req.params.paymentId + '.'});
+    }
+  });
 };

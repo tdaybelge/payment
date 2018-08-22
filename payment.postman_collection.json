@@ -20,10 +20,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
+							"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 19.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"declaration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 235,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
 						},
 						"url": {
-							"raw": "http://192.168.231.128:30112/payments/123",
+							"raw": "http://192.168.231.128:30172/payments/5b7dc6f2245a290011bdacd6",
 							"protocol": "http",
 							"host": [
 								"192",
@@ -31,10 +31,10 @@
 								"231",
 								"128"
 							],
-							"port": "30112",
+							"port": "30172",
 							"path": [
 								"payments",
-								"123"
+								"5b7dc6f2245a290011bdacd6"
 							]
 						}
 					},
@@ -244,7 +244,7 @@
 							"raw": "{\n   \"debtor\": {\n      \"party_no\": 1,\n      \"name\": \"Tom\"\n   },\n   \"creditor\": {\n      \"party_no\": 2,\n      \"name\": \"Jerry\"\n   },\n   \"tax\": 18.0,\n   \"amount\": 100.0,\n   \"commission\": 5.0,\n   \"decleration\": {\n      \"debit_ep\": {\n         \"acc_no\": 123,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      },\n      \"credit_ep\": {\n         \"acc_no\": 234,\n         \"branch_code\": 4299,\n         \"currency_code\": \"TRY\"\n      }\n   }\n}\n"
 						},
 						"url": {
-							"raw": "http://192.168.231.128:30172/payments/123",
+							"raw": "http://192.168.231.128:30172/payments/5b7dc6f2245a290011bdacd6",
 							"protocol": "http",
 							"host": [
 								"192",
@@ -255,7 +255,7 @@
 							"port": "30172",
 							"path": [
 								"payments",
-								"123"
+								"5b7dc6f2245a290011bdacd6"
 							]
 						}
 					},
