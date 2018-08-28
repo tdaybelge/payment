@@ -103,3 +103,51 @@ To connect to your database from outside the cluster execute the following comma
 
     kubectl port-forward --namespace default svc/payment-mongodb 27017:27017 &
     mongo --host 127.0.0.1 -p $MONGODB_ROOT_PASSWORD
+
+###############################################################
+#install kafka
+helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
+helm install --name payment-kafka --set persistence.size=150Mi incubator/kafka
+
+#uninstall
+helm delete payment-kafka
+helm del --purge payment-kafka
+
+### Connecting to Kafka from inside Kubernetes
+
+You can connect to Kafka by running a simple pod in the K8s cluster like this with a configuration like this:
+
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: testclient
+    namespace: default
+  spec:
+    containers:
+    - name: kafka
+      image: confluentinc/cp-kafka:4.1.2-2
+      command:
+        - sh
+        - -c
+        - "exec tail -f /dev/null"
+
+Once you have the testclient pod above running, you can list all kafka
+topics with:
+
+  kubectl -n default exec testclient -- /usr/bin/kafka-topics --zookeeper payment-kafka-zookeeper:2181 --list
+
+To create a new topic:
+
+  kubectl -n default exec testclient -- /usr/bin/kafka-topics --zookeeper payment-kafka-zookeeper:2181 --topic test1 --create --partitions 1 --replication-factor 1
+
+To listen for messages on a topic:
+
+  kubectl -n default exec -ti testclient -- /usr/bin/kafka-console-consumer --bootstrap-server payment-kafka-kafka:9092 --topic test1 --from-beginning
+
+To stop the listener session above press: Ctrl+C
+
+To start an interactive message producer session:
+  kubectl -n default exec -ti testclient -- /usr/bin/kafka-console-producer --broker-list payment-kafka-kafka-headless:9092 --topic test1
+
+To create a message in the above session, simply type the message and press "enter"
+To end the producer session try: Ctrl+C
