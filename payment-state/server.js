@@ -15,7 +15,7 @@ var healthCheck = require('./healthCheck/healthCheckRoutes'); //importing route
 
 
 var options = {
-  useMongoClinet: true,
+  useMongoClient: true,
   uri_decode_auth: true,
   auth: {authdb: 'admin'},
   user: 'root',

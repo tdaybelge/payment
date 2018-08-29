@@ -1,0 +1,25 @@
+---
+kind: Deployment
+apiVersion: apps/v1beta1
+metadata:
+  name: payment-state-command
+  labels:
+    run: payment-state-command
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: payment-state-command
+  template:
+    metadata:
+      creationTimestamp:
+      labels:
+        run: payment-state-command
+    spec:
+      containers:
+      - name: payment-state-command
+        image: payment-state-command:v1
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        imagePullPolicy: Never
