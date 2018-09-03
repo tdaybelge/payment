@@ -2,23 +2,23 @@
 kind: Deployment
 apiVersion: apps/v1beta1
 metadata:
-  name: payment-state-command
+  name: payment-state-query
   labels:
-    run: payment-state-command
+    run: payment-state-query
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: payment-state-command
+      run: payment-state-query
   template:
     metadata:
       creationTimestamp:
       labels:
-        run: payment-state-command
+        run: payment-state-query
     spec:
       containers:
-      - name: payment-state-command
-        image: payment-state-command:v1
+      - name: payment-state-query
+        image: payment-state-query:v1
         ports:
         - containerPort: 8080
           protocol: TCP
@@ -27,15 +27,15 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: payment-state-command
+  name: payment-state-query
   labels:
-    run: payment-state-command
+    run: payment-state-query
 spec:
   ports:
   - protocol: TCP
     port: 8080
     targetPort: 8080
-    nodePort: 31898
+    nodePort: 30172
   selector:
-    run: payment-state-command
+    run: payment-state-query
   type: LoadBalancer

@@ -1,7 +1,7 @@
 {
-  "name": "payment-state-command",
+  "name": "payment-state-query",
   "version": "1.0.0",
-  "description": "Payment state command API",
+  "description": "Payment state query API",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

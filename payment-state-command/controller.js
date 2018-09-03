@@ -1,10 +1,10 @@
 const kafka = require('kafka-node'),
   TOPIC_NAME = "payment-state",
-  uuid = require('uuid/v4'),
   Producer = kafka.Producer,
   APP_VERSION = "0.8.5",
   APP_NAME = "PaymentStateCommand",
-  KAFKA_BROKER_IP = 'payment-kafka-headless:9092';
+  KAFKA_BROKER_IP = 'payment-kafka-headless:9092',
+  ObjectID = require('mongodb').ObjectID;
 
 var producer;
 
@@ -69,7 +69,7 @@ exports.init = function() {
 
 exports.insertPaymentState = function(req, res) {
   var payment = req.body;
-  var key = payment.id = uuid();
+  var key = payment.id = new ObjectID();
 
   var event = {"type": "CREATED", "payment": payment};
   var eventStr = JSON.stringify(event);
